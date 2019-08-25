@@ -66,7 +66,7 @@ InstaStore es un microservicio encargado de seleccionar la tienda mas cercana pa
 
 # Arquitectura del microservicio
 
-![Arquitectura de InstaStore](https://www.dropbox.com/s/0uyu5np5vl3ln0x/architecture-instastore.png?dl=1)
+![Arquitectura de InstaStore](./architecture-instastore.png)
 
 - Se tendrán dos (2) controladores que permitirán desarrollar la funcionalidad antes especificada
 	1. UserController: se encargará del inicio de sesión de un usuario, así como su validación.
