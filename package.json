@@ -4,6 +4,7 @@
   "description": "InstaStore is a microservice in charge of selecting the closest \"convenience\" store to deliver a groceries order to our B2B clients.",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
