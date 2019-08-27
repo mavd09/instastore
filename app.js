@@ -13,4 +13,7 @@ app.use(bodyParser.json());
 var storeRoutes = require('./routes/store');
 app.use('/store', storeRoutes);
 
+var userRoutes = require('./routes/user');
+app.use('/user', userRoutes);
+
 module.exports = app;
