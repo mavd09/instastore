@@ -77,9 +77,32 @@ Se almacenará información importante en una base de datos que permita a un adm
 
 27 de Agosto a las 00:00 UTC
 
+# Documentacion
+
+Ingrese [aqui](http://editor.swagger.io/) y coloque el codigo encontrado en el archivo swagger.yaml del proyecto
+
+# Como correr el proyecto
+
+1. Clone el repo
+2. Ejecute el demon de Mongo
+3. Ejecute `npm install`
+4. Pruebe los endpoints
+
 # Improvements and trade offs
 
 1. What would you improve from your code? why?
+	- Validaciones: por tiempo no tuve en cuenta muchos casos que deberían ser de importancia
+	- La funcion que permite obtener los datos de las tiendas no funciona como debe ser, no me fue posible identificar el error
+	- Agregar un endpoint para poder aprovechar la informacion que se almacena en los logs
+	- Utilizar un API externa para calcular con mas precision la distancia entre dos puntos por su latitud y longitud y teniendo en cuenta aspectos como el tráfico
+	- Simplificar la lógica de algunas funciones en los controladores, ya sea separando el código en funciones más pequeñas o creando documentación en el código
+	- Integración de swagger para un obtener un mejor seguimiento de los endpoints
 2. Which trade offs would you make to accomplish this on time? What'd you do next time to deliver more and sacrifice less?
+	- El uso de librerias es bastante importante, de hecho llegué a programar algo que luego supe que estaba implementado en una librería y esto hace más limpio el código
+	- Uso de comentarios en el código para poder recordar partes tediosas
+	- Consultar a alguien que tenga más experiencia usando el lenguaje y el framework facilitaría el desarrollo
 3. Do you think your service is secure? why?
+	- Si, cumple con unos mínimos estándares, uso de autenticación para usar el endpoint, encripción de las contraseñas en la base de datos, acceso a la base de datos restrigido por un usuario y contraseña
 4. What would you do to measure the behaviour of your product on a production environment?
+	- El uso de los datos en la colección "logs" permite hacer un seguimmiento de lo que ha sucedido con los llamados exitosos al API
+	- Sería bueno manejar de mejor manera los errores que pueden ser arrojados por el usuario, esto con el fin de identificar posibles errores
