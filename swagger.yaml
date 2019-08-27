@@ -1,0 +1,167 @@
+swagger: "2.0"
+info:
+  description: "InstaStore is a microservice in charge of selecting the closest 'convenience' store to deliver a groceries order to our B2B clients."
+  version: "1.0.0"
+  title: "InstaStore"
+  contact:
+    email: "mavd09@hotmail.com"
+host: "localhost:3000"
+basePath: "/"
+tags:
+- name: "store"
+  description: "About store operations"
+- name: "user"
+  description: "About user operations"
+schemes:
+- "http"
+paths:
+  /store/closest:
+    post:
+      tags:
+      - "store"
+      summary: "Returns the closest store of a specified destination"
+      description: "This only could be executed by a logged in user"
+      operationId: "findClosest"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "destination details and expected time for the delivery"
+        required: true
+        schema:
+          $ref: "#/definitions/Order"
+      - in: "header"
+        name: "Authorization"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: ""
+          schema:
+            $ref: "#/definitions/Store"
+        404:
+          description: "There is no a store available. Try it later!"
+  /user/register:
+    post:
+      tags:
+      - "user"
+      summary: "Create user"
+      description: ""
+      operationId: "createUser"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: ""
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        200:
+          description: "User has been registered successfully!"
+        400:
+          description: "User is already registered!"
+        500:
+          description: "Server error"
+  /user/login:
+    get:
+      tags:
+      - "user"
+      summary: "Logs user into the system"
+      description: ""
+      operationId: "loginUser"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "username"
+        in: "query"
+        description: "The user name for login"
+        required: true
+        type: "string"
+      - name: "password"
+        in: "query"
+        description: "The password for login in clear text"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Token"
+        404:
+          description: "User has not been identified!"
+definitions:
+  Destination:
+    type: "object"
+    properties:
+      name: 
+        type: "string"
+      address: 
+        type: "string"
+      address_two:
+        type: "string"
+      description: 
+        type: "string"
+      country:
+        type: "string"
+      city: 
+        type: "string"
+      state: 
+        type: "string"
+      zip_code: 
+        type: "string"
+      latitude: 
+        type: "number"
+      longitude: 
+        type: "number"
+  Order:
+    type: "object"
+    properties:
+      expectedDelivery:
+        type: "string"
+      destination:
+        $ref: "#/definitions/Destination"
+  Coordinates:
+    type: "object"
+    properties:
+      latitude:
+        type: "number"
+      longitude:
+        type: "number"
+  Store:
+    type: "object"
+    properties:
+      storeId:
+        type: "string"
+      storeName:
+        type: "string"
+      isOpen:
+        type: "boolean"
+      coordinates:
+        $ref: "#/definitions/Coordinates"
+      nextDeliveryTime:
+        type: "string"
+  Token:
+    type: "object"
+    properties:
+      token:
+        type: "string"
+  User:
+    type: "object"
+    properties:
+      username:
+        type: "string"
+      password:
+        type: "string"
+  ApiResponse:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      type:
+        type: "string"
+      message:
+        type: "string"
