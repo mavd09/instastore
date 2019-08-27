@@ -1,0 +1,34 @@
+{
+  "name": "instastore",
+  "version": "1.0.0",
+  "description": "InstaStore is a microservice in charge of selecting the closest \"convenience\" store to deliver a groceries order to our B2B clients.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mavd09/instastore.git"
+  },
+  "author": "Manuel Vergara",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mavd09/instastore/issues"
+  },
+  "homepage": "https://github.com/mavd09/instastore#readme",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "geopoint": "^1.0.1",
+    "jwt-simple": "^0.5.6",
+    "moment": "^2.24.0",
+    "mongoose": "^5.6.11"
+  },
+  "devDependencies": {
+    "dotenv": "^8.1.0",
+    "nodemon": "^1.19.1"
+  }
+}
