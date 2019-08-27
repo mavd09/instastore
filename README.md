@@ -75,7 +75,7 @@ Se almacenará información importante en una base de datos que permita a un adm
 
 # Entrega del producto
 
-26 de Agosto a las 00:00 UTC
+27 de Agosto a las 00:00 UTC
 
 # Improvements and trade offs
 
