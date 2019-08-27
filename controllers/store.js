@@ -3,9 +3,19 @@
 var Store = require('../models/store');
 var storeService = require('../service/store');
 
+var Log = require('../models/log');
+
 var GeoPoint = require('geopoint');
 
 const speedCar = 1; // 1 kilometer per minute
+
+function saveLog(store, client) {
+    var log = new Log({
+        "store": store._id,
+        "client": client
+    });
+    log.save();
+}
 
 function findClosest(req, res) {
     var body = req.body;
@@ -40,6 +50,11 @@ function findClosest(req, res) {
                 const toMidnight = 24 * 60 - (nextDeliveryTime.getHours() * 60 + nextDeliveryTime.getMinutes());
                 nextDeliveryTime.setMinutes(nextDeliveryTime.getMinutes() + toMidnight + closestStore.opening_hours.open + timeToDelivery);
             }
+            saveLog(closestStore, {
+                lat: destinyPoint.latitude(),
+                lng: destinyPoint.longitude(), 
+                deliveryTime: isOpen ? expectedDeliveryTime : undefined
+            });
             res.status(200).send({
                 storeId: closestStore._id,
                 storeName: closestStore.name,
