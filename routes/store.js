@@ -5,6 +5,6 @@ var StoreController = require('../controllers/store');
 
 var api = express.Router();
 
-api.get('/closest', StoreController.findClosest);
+api.post('/closest', StoreController.findClosest);
 
 module.exports = api;
